@@ -1,0 +1,120 @@
+<div class="form vertical background">
+  <form [formGroup]="passwordFormGroup" (ngSubmit)="onPasswordSubmit()">
+    <div class="separator-big"></div>
+    <div class="form-field horizontal underscore">
+      <h3 class="form-label stretch">Zmiana hasła</h3>
+    </div>
+    <div class="form-field horizontal">
+      <label class="form-label" id="currentPasswordLabel" for="currentPassword">Aktualne hasło:</label>
+      <app-validaton-error [control]="passwordFormGroup.controls['currentPassword']"></app-validaton-error>
+      <input class="form-control stretch" type="password" id="currentPassword" formControlName="currentPassword"
+             [required]="true"/>
+      <app-validation-error-icon [control]="passwordFormGroup.controls['currentPassword']"></app-validation-error-icon>
+    </div>
+    <div class="form-field horizontal"><label class="form-label" id="newPasswordLabel" for="newPassword">Hasło:</label>
+      <app-validaton-error [control]="passwordFormGroup.controls['newPassword']"></app-validaton-error>
+      <input class="form-control stretch" type="password" id="newPassword" formControlName="newPassword"
+             [required]="true"/>
+      <app-validation-error-icon [control]="passwordFormGroup.controls['newPassword']"></app-validation-error-icon>
+    </div>
+    <div class="indented content-centered">
+      <input class="form-button" [disabled]="!isPasswordFormGroupValid()" id="savePassword" type="submit"
+             (submit)="onPasswordSubmit()"
+             value="Zapisz"/>
+    </div>
+  </form>
+  <form [formGroup]="emailFormGroup" (ngSubmit)="onPasswordSubmit()">
+    <div class="form-field horizontal underscore">
+      <h3 class="form-label stretch">Zmiana e-maila</h3>
+    </div>
+    <div class="form-field horizontal">
+      <label class="form-label" id="currentEmailLabel" for="currentEmail">Aktualny adres e-mail:</label>
+      <app-validaton-error [control]="emailFormGroup.controls['currentEmail']"></app-validaton-error>
+      <input class="form-control stretch" type="text" id="currentEmail" formControlName="currentEmail"
+             [required]="true"/>
+      <app-validation-error-icon [control]="emailFormGroup.controls['currentEmail']"></app-validation-error-icon>
+    </div>
+    <div class="form-field horizontal"><label class="form-label" id="newEmailLabel" for="newEmail">Nowy adres
+      e-mail</label>
+      <app-validaton-error [control]="emailFormGroup.controls['newEmail']"></app-validaton-error>
+      <input class="form-control stretch" type="text" id="newEmail" formControlName="newEmail"
+             [required]="true"/>
+      <app-validation-error-icon [control]="emailFormGroup.controls['newEmail']"></app-validation-error-icon>
+    </div>
+    <div class="indented content-centered">
+      <input class="form-button" [disabled]="!isEmailFormGroupValid()" id="saveEmail" type="submit"
+             (submit)="onPasswordSubmit()"
+             value="Zapisz"/>
+    </div>
+  </form>
+  <form [formGroup]="addressDetailsFormGroup" (ngSubmit)="onPasswordSubmit()">
+    <div class="form-field horizontal underscore">
+      <h3 class="form-label stretch">Dane do wysyłki</h3>
+    </div>
+    <div class="form-field horizontal">
+      <label class="form-label" id="accountTypeLabel">Typ konta:</label>
+      <label class="form-label" id="privateLabel" for="private">Osoba prywatna:</label>
+      <input class="form-field" id="private" type="radio" value="0" formControlName="accountType"
+             (ngModelChange)="isCompany()"/>
+      <label class="form-label" id="companyLabel" for="company">Firma:</label>
+      <input class="form-field" id="company" type="radio" value="1" formControlName="accountType"
+             (ngModelChange)="isCompany()"/>
+    </div>
+    <div class="form-field horizontal">
+      <label class="form-label" id="nameLabel" for="name">Nazwa:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['name']"></app-validaton-error>
+      <input class="form-control stretch" type="password" id="name" formControlName="name"
+             [required]="true"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['name']"></app-validation-error-icon>
+    </div>
+    <div class="form-field horizontal">
+      <label class="form-label" id="cityLabel" for="city">Miasto:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['city']"></app-validaton-error>
+      <input class="form-control stretch" type="text" id="city" formControlName="city"
+             [required]="true"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['city']"></app-validation-error-icon>
+      <label class="form-label" id="zipCodeLabel" for="zipCode">Kod pocztowy:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['zipCode']"></app-validaton-error>
+      <input class="form-control" type="text" id="zipCode" formControlName="zipCode"
+             placeholder="XX-XXX" [required]="true"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['zipCode']"></app-validation-error-icon>
+      <label class="form-label" id="streetLabel" for="street">Ulica:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['street']"></app-validaton-error>
+      <input class="form-control stretch" type="text" id="street" formControlName="street"
+             [required]="true"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['street']"></app-validation-error-icon>
+      <label class="form-label" id="houseNoLabel" for="houseNo">Nr domu:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['houseNo']"></app-validaton-error>
+      <input class="form-control" type="number" id="houseNo" formControlName="houseNo"
+             [required]="true"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['houseNo']"></app-validation-error-icon>
+      <label class="form-label" id="flatNoLabel" for="flatNo">Nr mieszkania:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['flatNo']"></app-validaton-error>
+      <input class="form-control" type="number" id="flatNo" formControlName="flatNo"
+             [required]="true"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['flatNo']"></app-validation-error-icon>
+    </div>
+    <div class="form-field horizontal">
+      <label class="form-label" id="phoneNumberLabel" for="phoneNumber">Telefon:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['phoneNumber']"></app-validaton-error>
+      <input class="form-control stretch" type="text" id="phoneNumber" formControlName="phoneNumber"
+             [required]="true"/>
+      <app-validation-error-icon
+        [control]="addressDetailsFormGroup.controls['phoneNumber']"></app-validation-error-icon>
+      <label class="form-label" id="NIPLabel" for="NIP">NIP:</label>
+      <app-validaton-error [control]="addressDetailsFormGroup.controls['NIP']"></app-validaton-error>
+      <input class="form-control stretch" type="text" id="NIP" formControlName="NIP"
+             [required]="addressDetailsFormGroup.get('accountType')?.value === '1'"/>
+      <app-validation-error-icon [control]="addressDetailsFormGroup.controls['NIP']"></app-validation-error-icon>
+    </div>
+    <div class="indented content-centered">
+      <input class="form-button" [disabled]="!isAddressDetailsFormGroupValid()" id="saveAddressDetails" type="submit"
+             (submit)="onPasswordSubmit()"
+             value="Zapisz"/>
+    </div>
+  </form>
+</div>
+
+
+
+

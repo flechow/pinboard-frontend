@@ -1,0 +1,63 @@
+<div class="form vertical background stretch">
+  <div class="form-field  horizontal">
+    <h1 id="title"
+        class="content-centered form-label stretch">{{offer?.title ? offer?.title : 'SPRZEDAM PRZEDMIOT PRZEDMIOT Z KATEGORII PRZEDMIOOTY'}}</h1>
+  </div>
+  <div class="horizontal stretch">
+    <div class="vertical border-thin extra-margin-right">
+      <div class="vertical-center horizontal stretch">
+        <button type="button" class="button-container clickable-icon-wrapper white-content" (click)="previousImage()"><i
+          class="gallery-icon fa fa-arrow-alt-circle-left extra-margin-left extra-margin-right10"></i>
+        </button>
+        <img class="main-photo" [src]="getSelectedImage()" alt="img"> <!--images && images.length > 0 ? images[0] :-->
+        <button type="button" class="button-container clickable-icon-wrapper white-content" (click)="nextImage()"><i
+          class="gallery-icon fa fa-arrow-alt-circle-right extra-margin-left extra-margin-right10"></i>
+        </button>
+      </div>
+      <div class="form-field horizontal">
+        <div class="gallery-spacer extra-margin-left10 extra-margin-right10"></div>
+        <div id="photos" class="horizontal extra-margin-right" *ngFor="let image of images">
+          <button type="button" class="extra-margin-left10 button-container clickable-icon-wrapper"
+                  (click)="changeSelectedImage(image)"
+                  [ngClass]="selectedImage === image ? 'clickable-image-wrapper-selected': ''">
+            <img class="thumbnail" [src]="image ? image :'favicon.ico'" alt="img">
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-thin vertical stretch extra-margin-right">
+      <div class="indented vertical">
+        <div class=" horizontal">
+          <h2 id="price" class="form-label font-bold ">{{offer?.price | currency}}</h2>
+          <div class="spacer"></div>
+          <div class="form-field horizontal">
+            <i class="icon fa fa-map-marker-alt  extra-margin-right"></i>
+            <h2 id="location"
+                class="form-label ">{{offer?.address ? offer?.address : 'Ślaskie, KatowiceŚlaskie, KatowiceŚlaskie, Katowice'}}</h2>
+          </div>
+        </div>
+        <div class="form-field horizontal">
+          <label class="form-label font-large"> Sprzedający:</label>
+          <h2 class="form-label font-bold font-large">{{offer?.owner}}</h2>
+          <div class="spacer"></div>
+          <h2 id="viewed" class="form-label ">Wyświetleń: {{offer?.viewedCounter}}</h2>
+        </div>
+      </div>
+      <app-map class="horizontal stretch" [markers]="[this.marker]" [mapMode]="'preview'"></app-map>
+    </div>
+  </div>
+
+  <div id="description" class="vertical stretch">
+    <div class="indented">{{offer?.description}}</div>
+  </div>
+  <app-message-owner-modal *ngIf="sendMessageVisible" (closeModalEvent)="onModalClose()" [offer]="offer"></app-message-owner-modal>
+  <div *ngIf="previewOnly" class="indented content-centered">
+    <input class="form-button button-long" type="submit" (click)="submit()" value="Opublikuj"/>
+    <input class="form-button" id="cancel" type="button" value="Powrót" (click)="back()"/>
+  </div>
+  <div *ngIf="!previewOnly" class="indented content-centered">
+    <input class="form-button button-long" id="messageOwner" type="submit" (click)="changeModalVisibility()"
+           value="Napisz wiadomość"/>
+    <input class="form-button" id="back" type="button" value="Powrót" routerLink="/"/>
+  </div>
+</div>

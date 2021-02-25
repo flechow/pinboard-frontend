@@ -1,0 +1,17 @@
+<div class="modal-dialog background vertical">
+  <div class="horizontal">
+    <label id="ownerLabel" class="form-label">Właściciel ogłoszenia:</label>
+    <label id="owner" class="form-label">{{offer?.owner}}</label>
+  </div>
+  <div class="vertical stretch">
+    <label id="contentLabel" for="content" class="form-label">Treść wiadomości:</label>
+    <textarea id="content" class="form-control"
+              [(ngModel)]="sendMessageRequestBody.content"></textarea>
+    <div class="spacer"></div>
+  </div>
+  <div class="indented content-centered">
+    <input class="form-button" id="messageOwner" type="button" [disabled]="!sendMessageRequestBody.content" (click)="send()"
+           value="Wyślij"/>
+    <input class="form-button" id="back" type="button" value="Anuluj" (click)="closeModal()"/>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()"
+      class="vertical background stretch">
+  <div class="background separator-big"></div>
+  <h2 class="no-margin content-centered">Zarejestruj się:</h2>
+  <div class="title background separator-big"></div>
+  <div class="vertical indented stretch content-centered">
+    <div class="vertical stretch">
+      <div class="form-field horizontal">
+        <label class="form-label" id="loginLabel" for="login">Login:</label>
+        <app-validaton-error [control]="formGroup.controls['login']"></app-validaton-error>
+        <input formControlName="login" class="form-control stretch"
+               id="login" placeholder="Login" [required]="true"/>
+        <app-validation-error-icon [control]="formGroup.controls['login']"></app-validation-error-icon>
+      </div>
+      <div class="form-field horizontal">
+        <label class="form-label" id="passwordLabel" for="password">Hasło:</label>
+        <app-validaton-error [control]="formGroup.controls['password']"></app-validaton-error>
+        <input formControlName="password" class="form-control stretch" type="password" id="password"
+               placeholder="********" [required]="true"/>
+        <app-validation-error-icon [control]="formGroup.controls['password']"></app-validation-error-icon>
+      </div>
+      <div class="form-field horizontal">
+        <label class="form-label" id="imieLabel" for="imie">Imie:</label>
+        <app-validaton-error [control]="formGroup.controls['imie']"></app-validaton-error>
+        <input formControlName="imie" class="form-control stretch"
+               id="imie" placeholder="Imie" [required]="true"/>
+        <app-validation-error-icon [control]="formGroup.controls['imie']"></app-validation-error-icon>
+      </div>
+      <div class="form-field horizontal">
+        <label class="form-label" id="emailLabel" for="email">Email:</label>
+        <app-validaton-error [control]="formGroup.controls['email']"></app-validaton-error>
+        <input formControlName="email" class="form-control stretch"
+               id="email" placeholder="Email" [required]="true"/>
+        <app-validation-error-icon [control]="formGroup.controls['email']"></app-validation-error-icon>
+      </div>
+    </div>
+    <div class="indented content-centered">
+      <input class="form-button button-long" [disabled]="!isValid()" id="send" type="submit" (submit)="onSubmit()"
+             value="Zarejestruj"/>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,30 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()"
+      class="vertical background stretch">
+  <div class="separator-big"></div>
+  <h2 class=" no-margin content-centered">Zaloguj się:</h2>
+  <div class="title separator-big"></div>
+  <div class="vertical indented stretch content-centered">
+    <div class="vertical stretch">
+      <div class="form-field horizontal">
+        <label class="form-label" id="loginLabel" for="login">Login:</label>
+        <app-validaton-error [control]="formGroup.controls['login']"></app-validaton-error>
+        <input formControlName="login" class="form-control stretch"
+               id="login" placeholder="Login" [required]="true"/>
+        <app-validation-error-icon [control]="formGroup.controls['login']"></app-validation-error-icon>
+      </div>
+      <div class="form-field horizontal">
+        <label class="form-label" id="passwordLabel" for="password">Hasło:</label>
+        <app-validaton-error [control]="formGroup.controls['password']"></app-validaton-error>
+        <input formControlName="password" class="form-control stretch" type="password" id="password"
+               placeholder="********" [required]="true"/>
+        <app-validation-error-icon [control]="formGroup.controls['password']"></app-validation-error-icon>
+      </div>
+    </div>
+    <div class="indented content-centered">
+      <input class="form-button" [disabled]="!isValid()" id="send" type="submit" (submit)="onSubmit()"
+             value="Zaloguj"/>
+    </div>
+  </div>
+</form>
+
+

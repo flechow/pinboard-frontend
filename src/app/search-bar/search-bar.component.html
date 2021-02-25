@@ -1,0 +1,48 @@
+<form class="vertical stretch" [formGroup]="formGroup" (ngSubmit)="getFormData()">
+  <div class="form-field horizontal stretch">
+    <input id="title" formControlName="title" class="stretch form-control" type="search"
+           placeholder="Szukaj..."/>
+    <div id="categoryWrapper" class="horizontal icon-black extra-margin-right">
+      <select id="category" name="category" class="form-control dropdown stretch" formControlName="category">
+        <option value="" disabled selected hidden>Kategoria</option>
+        <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
+      </select>
+      <span class="inside-select"><i
+        class="animated-arrow icon
+        toolbar-icon fa fa-caret-down"></i></span>
+    </div>
+    <input id="location" formControlName="location" class="form-control" type="text"
+           placeholder="Lokalizacja"/>
+    <button id="search" type="submit" class="button"><i class="search-button fa fa-search"></i></button>
+    <div (click)="dropdownStateChange()" class="extra-margin-left horizontal button dropdown form-control">
+      <span class="vertical-center horizontal stretch">Dodatkowe filtry</span>
+      <div [hidden]="dropped"><i
+        class="animated-arrow icon
+        toolbar-icon fa fa-caret-down extra-margin-left extra-margin-right10"></i></div>
+      <div [hidden]="!dropped"><i
+        class="animated-arrow icon toolbar-icon fa fa-caret-up extra-margin-left extra-margin-right10"></i></div>
+    </div>
+  </div>
+  <div *ngIf="dropped" class="form-field horizontal stretch">
+    <div class="form-field horizontal stretch">
+      <input id="description" formControlName="description" class="form-control stretch" type="text"
+             placeholder="Opis..."/>
+    </div>
+    <div class="form-field horizontal stretch">
+      <label id="cenaOdLabel" for="cenaOd" class="form-label">Cena od:</label>
+      <input type="number" id="cenaOd" formControlName="minPrice" class="form-control stretch"/>
+      <label id="cenaDoLabel" for="cenaDo" class="form-label">do:</label>
+      <input type="number" id="cenaDo" formControlName="maxPrice" class="form-control stretch"/>
+    </div>
+    <div class="form-field horizontal stretch">
+      <label id="publishDateFromLabel" for="publishDateFrom" class="form-label">Data publikacji od:</label>
+      <input id="publishDateFrom" formControlName="publishDateFrom" class="form-control stretch" type="date">
+      <label id="publishDateToLabel" for="publishDateTo" class="form-label">do:</label>
+      <input id="publishDateTo" formControlName="publishDateTo" class="form-control stretch" type="date">
+    </div>
+  </div>
+
+</form>
+
+
+

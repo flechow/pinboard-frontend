@@ -1,0 +1,193 @@
+<div class="vertical stretch">
+  <div class="horizontal stretch">
+    <div class="form-field horizontal">
+      <label id="maxItemsLabel" for="maxItems" class="form-label">Pozycji na stronę:</label>
+      <div class="horizontal icon-black extra-margin-right10">
+        <select id="maxItems" name="maxItems" class="form-control custom-select dropdown"
+                [(ngModel)]="pagingInfo.pageSize" (ngModelChange)="pageSizeChange()">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <span class="inside-select"><i class="animated-arrow icon toolbar-icon fa fa-caret-down"></i></span>
+      </div>
+      <label id="sortOrderLabel" for="sortOrder" class="form-label">Sortowanie:</label>
+      <div class="horizontal icon-black extra-margin-right10">
+        <select id="sortOrder" name="sortOrder" class="form-control" [(ngModel)]="pagingInfo.sortField"
+                (ngModelChange)="emitSearchCriteriaChange()">
+          <option value="Najnowsze">Najnowsze</option>
+          <option value="Najstarsze">Najstarsze</option>
+          <option value="Najtansze">Najtansze</option>
+          <option value="Najdrozsze">Najdroższe</option>
+        </select>
+        <span class="inside-select"><i class="animated-arrow icon toolbar-icon fa fa-caret-down"></i></span></div>
+    </div>
+
+    <div id="displayStyle" class="horizontal vertical-center">
+      <label id="displayStyleLabel" for="displayStyle">Układ:</label>
+      <button type="button" class="button-container clickable-icon-wrapper" (click)="flagChange('list')"
+              [ngClass]="displayStyle === 'list' ? 'clickable-icon-wrapper-selected' : ''">
+        <i class="icon toolbar-icon fa fa-list extra-margin-left10 extra-margin-right10"></i>
+      </button>
+      <button type="button" class="button-container clickable-icon-wrapper" (click)="flagChange('grid')"
+              [ngClass]="displayStyle === 'grid'  ? 'clickable-icon-wrapper-selected' : ''"><i
+        class="icon toolbar-icon fa fa-th-large extra-margin-left10 extra-margin-right10"></i>
+      </button>
+    </div>
+  </div>
+  <div id="paging" class="horizontal stretch content-centered">
+    <button type="button" class="button-container white-content" (click)="currentPageChanged(pagingInfo.currentPage-1)">
+      <i
+        class="icon toolbar-icon fa fa-arrow-left extra-margin-left extra-margin-right10"></i>
+    </button>
+    <div class="horizontal stretch vertical-center" *ngIf="pagingInfo.totalPages > 0 && pagingInfo.totalPages <= 25">
+      <div class="vertical-center" *ngFor="let item of [].constructor(pagingInfo.totalPages); let i = index;">
+        <div class="horizontal">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="page" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="horizontal stretch vertical-center" *ngIf="pagingInfo.totalPages > 25">
+      <div class="vertical-center" *ngFor="let item of [].constructor(pagingInfo.totalPages); let i = index;">
+        <div class="horizontal"
+             *ngIf="i === 0 && pagingInfo.currentPage >= 6 ">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="1" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+        <div class="horizontal"
+             *ngIf="i === 1 && pagingInfo.currentPage >= 7">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="2" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+        <div class="horizontal"
+             *ngIf="i === 2 && pagingInfo.currentPage >= 8">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="3" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+        <div class="horizontal extra-margin-right10" *ngIf="i === 3 && pagingInfo.currentPage >= 9">...</div>
+        <div class="horizontal"
+             *ngIf="i >= 0 && i < pagingInfo.totalPages && i > pagingInfo.currentPage - 6 && i < pagingInfo.currentPage + 4">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="4" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+        <div class="horizontal extra-margin-right10"
+             *ngIf="i === pagingInfo.totalPages -4 && pagingInfo.currentPage < pagingInfo.totalPages - 7">...
+        </div>
+        <div class="horizontal"
+             *ngIf="i === pagingInfo.totalPages -3 && pagingInfo.currentPage < pagingInfo.totalPages - 6">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="last3" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+        <div class="horizontal"
+             *ngIf="i === pagingInfo.totalPages -2 && pagingInfo.currentPage < pagingInfo.totalPages - 5">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="last2" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+        <div class="horizontal"
+             *ngIf="i === pagingInfo.totalPages -1 && pagingInfo.currentPage < pagingInfo.totalPages - 4">
+          <span class="extra-margin-right10" [ngClass]="i+1 === pagingInfo.currentPage ? 'page-selected' : ''">
+          <a id="last" class="link selection-disabled" (click)="currentPageChanged(i+1)">{{i + 1}}</a></span>
+        </div>
+
+      </div>
+    </div>
+    <button type="button" class="button-container white-content" (click)="currentPageChanged(pagingInfo.currentPage+1)">
+      <i class="icon toolbar-icon fa fa-arrow-right extra-margin-right10"></i>
+    </button>
+  </div>
+  <div class="vertical scrollable">
+    <div *ngIf="displayStyle === 'list'">
+      <div *ngFor="let offer of offers" (click)="showOffer(offer)">
+        <div class="offer-horizontal horizontal stretch">
+          <img class="thumbnail" src="favicon.ico" alt="img">
+          <div class="vertical stretch extra-margin-left">
+            <div class="horizontal stretch">
+              <label class="font-large font-bold">{{offer.title}}</label>
+              <div class="spacer"></div>
+              <label class="font-large font-bold extra-margin-right10">{{offer.price | currency}}</label>
+            </div>
+            <div class="spacer"></div>
+            <div class="horizontal stretch">
+              <i class="icon fa fa-map-marker-alt extra-margin-left extra-margin-right10"></i>
+              <label
+                class="font-large font-bold extra-margin-left">{{offer.address ? offer.address : 'location'}}</label>
+              <div class="spacer"></div>
+              <label
+                class="font-large extra-margin-left">Dodano: {{offer.publishDate | dateFormat}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="displayStyle === 'grid'">
+      <div *ngFor="let offer of offers; let i = index; let first = first; let last = last;" (click)="showOffer(offer)">
+        <div *ngIf="i%3===0" class="horizontal stretch">
+          <div *ngIf="i< offers.length" class="offer-vertical vertical stretch extra-margin-left">
+            <img class="thumbnail" [src]="offer.photos && offer.photos.length > 0? offer.photos[0]: 'favicon.ico'"
+                 alt="img">
+            <div class="horizontal stretch">
+              <label class="font-large font-bold">{{offers[i].title}}</label>
+              <div class="spacer"></div>
+              <label
+                class="font-large font-bold extra-margin-right10">{{offers[i].price | currency}}</label>
+            </div>
+            <div class="spacer"></div>
+
+            <div class="horizontal stretch">
+              <i class="icon fa fa-map-marker-alt extra-margin-left extra-margin-right10"></i>
+              <label
+                class="font-large font-bold extra-margin-left">{{offers[i].address ? offers[i].address : ' location'}}</label>
+            </div>
+            <label
+              class="font-large extra-margin-left">Dodano: {{offers[i].publishDate | dateFormat}}</label>
+          </div>
+          <div *ngIf="i+1< offers.length;else spacer"
+               class="offer-vertical vertical stretch extra-margin-left">
+            <img class="thumbnail" src="favicon.ico" alt="img">
+            <div class="horizontal stretch">
+              <label class="font-large font-bold">{{offers[i + 1].title}}</label>
+              <div class="spacer"></div>
+              <label
+                class="font-large font-bold extra-margin-right10">{{offers[i + 1].price | currency}}</label>
+            </div>
+            <div class="spacer"></div>
+
+            <div class="horizontal stretch">
+              <i class="icon fa fa-map-marker-alt extra-margin-left extra-margin-right10"></i>
+              <label
+                class="font-large font-bold extra-margin-left">{{offers[i + 1].address ? offers[i + 1].address : ' location'}}</label>
+            </div>
+            <label
+              class="font-large extra-margin-left">Dodano: {{offers[i + 1].publishDate | dateFormat}}</label>
+          </div>
+          <div *ngIf="i+2< offers.length;else spacer"
+               class="offer-vertical vertical stretch extra-margin-left extra-margin-right10">
+            <img class="thumbnail" src="favicon.ico" alt="img">
+            <div class="horizontal stretch">
+              <label class="font-large font-bold">{{offers[i + 2].title}}</label>
+              <div class="spacer"></div>
+              <label
+                class="font-large font-bold extra-margin-right10">{{offers[i + 2].price | currency}}</label>
+            </div>
+            <div class="spacer"></div>
+
+            <div class="horizontal stretch">
+              <i class="icon fa fa-map-marker-alt extra-margin-left extra-margin-right10"></i>
+              <label
+                class="font-large font-bold extra-margin-left">{{offers[i + 2].address ? offers[i + 2].address : ' location'}}</label>
+            </div>
+
+            <label
+              class="font-large extra-margin-left">Dodano: {{offers[i + 2].publishDate | dateFormat}}</label>
+          </div>
+          <ng-template #spacer>
+            <div class="spacer extra-margin-left extra-margin-right10"></div>
+            <div class="extra-margin-left"></div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

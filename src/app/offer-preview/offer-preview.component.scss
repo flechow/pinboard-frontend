@@ -1,0 +1,10 @@
+#price {
+  --priceWidth: 7em;
+  min-width: var(--priceWidth);
+  max-width: var(--priceWidth);
+  width: var(--priceWidth);
+}
+
+#description {
+  height: 10em;
+}

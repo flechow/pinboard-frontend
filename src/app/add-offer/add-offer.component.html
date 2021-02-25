@@ -1,0 +1,74 @@
+<form (click)="dispatch($event)" [formGroup]="formGroup" (ngSubmit)="submit()"
+      class="form vertical background stretch">
+  <div class="separator-big"></div>
+  <h2 class="no-margin content-centered">Dodaj ogłoszenie:</h2>
+  <div class="title separator-big"></div>
+  <div class="horizontal stretch">
+    <div class="vertical indented stretch">
+      <div class="form-field horizontal">
+        <label id="titleLabel" for="title" class="form-label">Tytuł:</label>
+        <app-validaton-error [control]="formGroup.controls['title']"></app-validaton-error>
+        <input formControlName="title" id="title" type="text" class="extra-margin-left stretch form-control"/>
+        <app-validation-error-icon [control]="formGroup.controls['title']"></app-validation-error-icon>
+      </div>
+      <div class="form-field horizontal">
+        <label id="priceLabel" for="price" class="form-label">Cena: </label>
+        <app-validaton-error [control]="formGroup.controls['price']"></app-validaton-error>
+        <input type="number" formControlName="price" id="price"
+               class="extra-margin-left extra-margin-right stretch form-control"/>
+        <app-validation-error-icon [control]="formGroup.controls['price']"></app-validation-error-icon>
+        <label id="categoryLabel" for="category" class="form-label">Kategoria: </label>
+        <app-validaton-error [control]="formGroup.controls['category']"></app-validaton-error>
+        <select id="category" name="category" class="form-control stretch" formControlName="category">
+          <option value="" disabled selected hidden>Kategoria</option>
+          <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
+        </select>
+        <app-validation-error-icon [control]="formGroup.controls['category']"></app-validation-error-icon>
+        <span class="inside-select extra-padding-right extra-margin-right"><i
+          class="animated-arrow icon
+        toolbar-icon fa fa-caret-down"></i></span>
+      </div>
+      <div class="form-field horizontal"><label id="addressLabel" for="address" class="form-label">Adres: </label>
+        <app-info [control]="formGroup.controls['address']" [name]="'address'"></app-info>
+        <app-validaton-error [control]="formGroup.controls['address']"></app-validaton-error>
+        <input id="address" formControlName="address" class="form-control stretch" type="text"/>
+        <app-validation-error-icon [control]="formGroup.controls['address']"></app-validation-error-icon>
+        <app-info-icon [control]="formGroup.controls['address']" [name]="'address'"></app-info-icon>
+      </div>
+      <div class="form-field horizontal">
+        <label id="descriptionLabel" for="description" class="form-label">Opis: </label>
+        <app-validaton-error [control]="formGroup.controls['description']"></app-validaton-error>
+        <textarea formControlName="description" id="description" class="extra-margin-left stretch textarea form-control"
+                  maxlength="255"></textarea>
+        <app-validation-error-icon [control]="formGroup.controls['description']"></app-validation-error-icon>
+      </div>
+      <div id="photosSection" class="form-field horizontal">
+        <label id="photosLabel" for="photos" class="form-label">Zdjęcia:</label>
+        <div id="photos" class="horizontal extra-margin-right" *ngFor="let image of images">
+          <img class="img-hoverable thumbnail extra-margin-left" [src]="image" alt="img">
+          <div class="embedded-hover"><a *ngIf="!imageError" class="link tooltip-enabled content-centered"
+                                         (click)="deleteImage(image)"> <i
+            class="icon fa fa-trash"></i></a>
+          </div>
+        </div>
+        <div class="horizontal extra-margin-left" *ngFor="let item of [].constructor(8); let i = index;">
+          <div class="fileInput horizontal form-field" *ngIf="images && images.length < 8 && i === images.length">
+            <a class="link tooltip-enabled"> <i class="icon toolbar-icon fa fa-plus-circle"></i></a>
+            <input [id]="i" type="file" accept="image/*" (change)="onSelectFile($event)"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vertical stretch">
+      <app-map (addressUpdated)="onAddressUpdate($event)" [offer]="getFormData(true)" [mapMode]="'addMarker'"
+               [style.height]="100+'%'" class="horizontal stretch"></app-map>
+    </div>
+
+  </div>
+  <div class="indented content-centered">
+    <input class="form-button button-long" [disabled]="!isValid()" id="send" type="submit" (submit)="submit()" value="Opublikuj"/>
+    <input class="form-button" [disabled]="!isValid()" id="preview" type="button" value="Podgląd"
+           (click)="preview()"/>
+    <input class="form-button" id="cancel" type="button" value="Anuluj" routerLink="/"/>
+  </div>
+</form>

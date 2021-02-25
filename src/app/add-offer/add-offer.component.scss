@@ -1,0 +1,17 @@
+#titleLabel, #descriptionLabel, #adultsOnlyLabel, #categoryLabel, #priceLabel, #photosLabel, #addressLabel {
+  --titleLabelWidth: 6em;
+  width: var(--titleLabelWidth);
+  min-width: var(--titleLabelWidth);
+  max-width: var(--titleLabelWidth);
+}
+
+#price {
+  --priceWidth: 10em;
+  width: var(--priceWidth);
+  min-width: var(--priceWidth);
+  max-width: var(--priceWidth);
+}
+
+#photosSection {
+  min-height: 8em;
+}

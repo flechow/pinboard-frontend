@@ -1,0 +1,40 @@
+<div class="background vertical stretch">
+  <div class="separator-big"></div>
+  <h2 class="no-margin content-centered">Skrzynka odbiorcza:</h2>
+  <div class="title separator-big"></div>
+  <div class="horizontal stretch">
+    <div id="list" class="inbox vertical">
+      <div *ngFor="let user of users" class="horizontal stretch tooltip-enabled toolbar-icon border-thin"
+           (click)="loadMessages(user.name,user.id)"><h3>{{user?.name}}</h3></div>
+    </div>
+    <div class="stretch vertical border-thin">
+      <div class="inbox vertical">
+
+        <div class="message border-thin" *ngFor="let message of messages">
+          <div class="extra-padding-left title font-large font-bold"
+               *ngIf="offerTitle !== message?.offerTitle">
+            Temat: {{message?.offerTitle}}</div>
+          <div class="separator-big"></div>
+          <div class="vertical">
+            <div class="horizontal stretch message-background">
+              <h3 class="indented spacer">{{message.author}}</h3>
+              <h3 class="indented">{{message.sent | dateFormat}}</h3>
+            </div>
+            <div class="horizontal stretch message-content-background">
+              <h4 class="indented">{{message.content}}</h4></div>
+          </div>
+        </div>
+        <div class="horizontal send-container">
+          <input id="message" type="text" placeholder="Wprowadź treśc wiadomości, wciśnij Enter aby wysłać wiadomość."
+                 class="stretch"
+                 (keyup.enter)="sendMessage()"
+                 [(ngModel)]="messageText">
+          <button type="submit" class="button-container send-container-background white-content"
+                  (click)="sendMessage()" [disabled]="!messageText">
+            <i class="send icon fa fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+#currentPasswordLabel, #newPasswordLabel {
+  --currentPasswordLabel: 8em;
+  min-width: var(--currentPasswordLabel);
+  width: var(--currentPasswordLabel);
+  max-width: var(--currentPasswordLabel);
+}
+
+#currentEmailLabel, #newEmailLabel {
+  --currentEmailLabel: 11em;
+  min-width: var(--currentEmailLabel);
+  width: var(--currentEmailLabel);
+  max-width: var(--currentEmailLabel);
+}
+
+#houseNoLabel, #nameLabel, #cityLabel, #accountTypeLabel, #phoneNumberLabel {
+  --houseNoLabel: 5em;
+  min-width: var(--houseNoLabel);
+  width: var(--houseNoLabel);
+  max-width: var(--houseNoLabel);
+}
+
+#zipCodeLabel {
+  --zipCodeLabel: 7em;
+  min-width: var(--zipCodeLabel);
+  width: var(--zipCodeLabel);
+  max-width: var(--zipCodeLabel);
+}
+
+#houseNo, #flatNo {
+  --houseNo: 4em;
+  min-width: var(--houseNo);
+  width: var(--houseNo);
+  max-width: var(--houseNo);
+}
+
+#streetLabel {
+  --streetLabel: 3em;
+  min-width: var(--streetLabel);
+  width: var(--streetLabel);
+  max-width: var(--streetLabel);
+}
+
+#flatNoLabel {
+  --flatNoLabel: 7em;
+  min-width: var(--flatNoLabel);
+  width: var(--flatNoLabel);
+  max-width: var(--flatNoLabel);
+}
+
+#zipCode {
+  --zipCode: 6em;
+  min-width: var(--zipCode);
+  width: var(--zipCode);
+  max-width: var(--zipCode);
+}
+
+#NIPLabel {
+  --NIPLabel: 2em;
+  min-width: var(--NIPLabel);
+  width: var(--NIPLabel);
+  max-width: var(--NIPLabel);
+}
+
+

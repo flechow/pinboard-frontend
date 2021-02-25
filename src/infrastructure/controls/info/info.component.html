@@ -1,0 +1,5 @@
+<div class="validation-info-tooltip" *ngIf="(!control?.errors || (!!control?.errors && !control?.touched))
+ && control.enabled && name">
+  <div>{{getInfo(name)}}
+  </div>
+</div>

@@ -1,0 +1,671 @@
+:root {
+  --galleryIcon: 6em;
+  --form-control-border: #363636;
+  --main-font-color: #fff0ef;
+  --background-color: #272727;
+  --background-color2: #363636;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: var(--main-font-color);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex: 1;
+  height: calc(100vh);
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right-margin {
+  margin-right: 1em;
+}
+
+.left-padding {
+  padding-left: 0.5em;
+}
+
+.background {
+  background-color: var(--background-color);
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.link {
+  cursor: pointer;
+}
+
+a, a:visited, a:active {
+  color: inherit;
+}
+
+.tooltip-enabled:hover, a:hover, .button-container:hover {
+  background-color: blue;
+}
+
+.border-thin {
+  border: 1px solid #fff0ff;
+}
+
+.extra-padding-left {
+  padding-left: 10px;
+}
+
+.stretch {
+  flex: 1;
+}
+
+.extra-margin-left10 {
+  margin-left: 10px;
+}
+
+.extra-margin-right10 {
+  margin-right: 10px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+*:focus {
+  outline: none;
+}
+
+.icon {
+  font-weight: 500;
+  display: block;
+  font-size: 20px;
+  background-color: transparent;
+}
+
+.toolbar-icon {
+  cursor: pointer;
+}
+
+.icon.toolbar-icon {
+  font-size: 30px;
+}
+
+.button-container {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.extra-padding-top {
+  padding-top: 5px;
+}
+
+.separator-small {
+  height: 0.1em;
+}
+
+.separator-big {
+  height: 1em;
+}
+
+.separator-medium {
+  height: 0.5em;
+}
+
+.vertical-item {
+  padding-top: 2px;
+}
+
+.scrollable {
+  margin: 0;
+  overflow: auto;
+}
+
+.left-panel, .right-panel {
+  padding-top: 1em;
+  min-width: 15%;
+  width: 15%;
+  max-width: 15%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.body-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--main-font-color);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.extra-margin-left {
+  margin-left: 5px;
+}
+
+.extra-margin-right {
+  margin-right: 5px;
+}
+
+.message {
+  margin: 1px 5px;
+}
+
+.modal-dialog {
+  position: fixed;
+  left: 25%;
+  right: 25%;
+  top: 30vh;
+  bottom: 30vh;
+  z-index: 9;
+  min-width: 20vw;
+  max-width: 50vw;
+  width: 50%;
+  border: 0.4em solid var(--main-font-color);
+  overflow: auto;
+}
+
+.content-centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cursor-disable {
+  cursor: auto;
+}
+
+.indented {
+  margin: 5px;
+}
+
+input[type=radio] {
+  transform: scale(1.5);
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.4em;
+}
+
+.form {
+  height: calc(100vh - 5.01em);
+  width: 100%;
+  display: inline-flex;
+}
+
+.title {
+  border-bottom: 0.1em solid var(--main-font-color);
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.form-field {
+  text-align: left;
+  align-items: center;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  margin-right: 0.25em;
+}
+
+div.form-field .validation-error-tooltip {
+  display: none;
+}
+
+.checkbox-field {
+  padding-left: 0.25em;
+}
+
+.form textarea {
+  min-height: 5em;
+  max-height: 15em;
+}
+
+.form-button {
+  display: inline-flex;
+  margin: 2px 4px 4px 2px;
+  min-width: 2em;
+  width: 5em;
+  min-height: 1em;
+  height: 2em;
+  background-color: darkorange;
+  color: black; //#ffffff
+  font-size: 1.25em;
+  border: 3px solid #333333;
+  text-align: center;
+}
+
+.button-long {
+  width: unset;
+  display: inline-flex;
+}
+
+.form-button:hover {
+  cursor: pointer;
+}
+
+.form-button:disabled {
+  color: #333333;
+  background-color: #6f6f6f;
+}
+
+.toolbar {
+  height: 4em;
+  margin: 0px -6px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--main-font-color);
+  font-weight: 600;
+}
+
+.notification-counter {
+  position: absolute;
+  top: 12px;
+  right: 40px;
+  padding: 2px 5px;
+  border-radius: 25%;
+  background: red;
+  color: var(--main-font-color);
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 55px;
+  right: 50px;
+  z-index: 99;
+  background-color: lightcyan;
+  color: floralwhite;
+}
+
+.menu-item {
+  color: var(--background-color);
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #e566be;
+}
+
+.accept {
+  color: green;
+}
+
+.decline {
+  color: red;
+}
+
+.login-centered {
+  width: 25%;
+  margin: 1% 37.5%;
+}
+
+.form-control {
+  border: 3px solid var(--form-control-border);
+  border-radius: 15px;
+  display: flex;
+  padding: 10px;
+  margin: 0.1em 0.5em;
+}
+
+.form-centered {
+  width: 25%;
+  margin: 0 auto 0;
+}
+
+.font-large {
+  font-size: 20px;
+}
+
+.button {
+  background-color: #ffffff;
+  border: 3px solid var(--form-control-border);
+  border-radius: 10px;
+  color: black;
+}
+
+.button:hover {
+  background-color: #efefef;
+}
+
+.search-button {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.form-control:hover {
+  background-color: #e6dafa;
+}
+
+.form-control:focus {
+  border: 3px solid blue;
+  border-radius: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.animated-arrow:hover {
+  background-color: transparent;
+  transition: all 0.75s 0.25s;
+  transform: rotate(360deg);
+}
+
+.vertical-center {
+  align-items: center;
+}
+
+.dropdown {
+  padding: 3px 5px;
+  cursor: pointer;
+}
+
+.inside-select {
+  margin: 5px 5px 5px -2.5em;
+  pointer-events: none;
+  color: var(--background-color);
+}
+
+.custom-select {
+  min-width: 5em;
+  max-width: 6em;
+}
+
+.clickable-icon-wrapper {
+  color: var(--main-font-color);
+}
+
+.clickable-icon-wrapper-selected {
+  background-color: gold;
+}
+
+.clickable-image-wrapper-selected {
+  background-color: gold;
+}
+
+select[default] {
+  color: lightgray;
+}
+
+.form-label {
+  margin-left: 5px;
+}
+
+.offer-horizontal {
+  height: 10em;
+  border: 3px solid var(--main-font-color);
+  padding: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.offer-vertical {
+  height: 15em;
+  border: 3px solid var(--main-font-color);
+  padding: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.page-selected {
+  border: 3px solid gold;
+  background-color: var(--background-color);
+  color: var(--main-font-color);
+  font-weight: bold;
+}
+
+.selection-disabled {
+  user-select: none;
+}
+
+.extra-padding-right {
+  padding-right: 10px;
+}
+
+.file-input {
+  position: relative;
+}
+
+input[type=file] {
+  position: absolute;
+  cursor: pointer;
+  height: 2.25em;
+  width: 2.25em;
+  display: flex;
+  opacity: 0;
+}
+
+input[type=file]:hover {
+  pointer-events: none;
+}
+
+h1, h2, h3 {
+  margin: 0.25em;
+}
+
+.main-photo {
+  --photoHeight: 30em;
+  --priceWidth: 60em;
+  min-height: var(--photoHeight);
+  max-height: var(--photoHeight);
+  height: var(--photoHeight);
+  min-width: var(--priceWidth);
+  max-width: var(--priceWidth);
+  width: var(--priceWidth);
+  border: 3px solid var(--main-font-color);
+}
+
+
+.gallery-icon {
+  font-size: var(--galleryIcon);
+}
+
+.gallery-spacer {
+  width: var(--galleryIcon);
+  max-width: var(--galleryIcon);
+  min-width: var(--galleryIcon);
+}
+
+.white-content {
+  color: var(--main-font-color);
+}
+
+.error {
+  color: red;
+  background-color: var(--main-font-color);
+}
+
+
+.thumbnail {
+  border: 2px solid var(--main-font-color);
+  background-color: #fff0ff;
+  height: 6em;
+  width: 6em;
+}
+
+.embedded-hover {
+  opacity: 1;
+  margin: 2.25em 2em 2.5em -3.5em;
+}
+
+.embedded-hover:not(:hover) {
+  opacity: 0;
+}
+
+.img-hoverable:hover + .embedded-hover {
+  opacity: 1;
+  display: block;
+}
+
+.description {
+  font-size: 20px;
+  border: 3px solid var(--main-font-color);
+  padding: 0.5em;
+}
+
+.link-undecorated {
+  text-decoration: none;
+}
+
+.validation-icon {
+  color: red;
+  margin: 5px 5px 5px -2em;
+  pointer-events: none;
+}
+
+.info-icon {
+  color: lightblue;
+  margin: 5px 5px 5px -2em;
+  pointer-events: none;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+  border: 3px solid red;
+}
+
+input:disabled {
+  background: gray;
+}
+
+div.form-field:hover .validation-error-tooltip {
+  z-index: 2;
+  display: block;
+}
+
+div.form-field:hover .validation-info-tooltip {
+  z-index: 2;
+  display: block;
+}
+
+div.form-field .validation-info-tooltip {
+  display: none;
+}
+
+
+.validation-error-tooltip {
+  position: absolute;
+  margin-left: 1.25em;
+  margin-top: 1em;
+  border: 1px solid var(--main-font-color);
+  background-color: var(--background-color);
+  padding: 0.5em;
+}
+
+.validation-info-tooltip {
+  position: absolute;
+  margin-left: 1.25em;
+  margin-top: 1em;
+  border: 1px solid var(--main-font-color);
+  background-color: var(--background-color);
+  padding: 0.5em;
+}
+
+.map {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  width: 100%;
+
+  .map-container {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    width: 100%;
+  }
+}
+
+.map-info-window {
+  display: flex;
+  flex: 1;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+}
+
+.black-font {
+  color: var(--background-color);
+}
+
+.gm-style-iw, .gm-style-iw-c {
+  display: flex;
+  flex: 1
+}
+
+button.gm-ui-hover-effect {
+  display: none !important;
+}
+
+.underscore {
+  border-bottom: 0.2px solid var(--main-font-color);
+  //var(--background-color);
+  margin-bottom: 5px;
+}
+
+.message-background {
+  background-color: black;
+}
+
+.message-content-background {
+  background-color: var(--background-color2);
+}
+
+.send-container-background {
+  background-color: darkorange;
+}
+
+.send-container {
+  --send-container-height: 3em;
+  position: absolute;
+  top: calc(100vh - var(--send-container-height));
+  height: var(--send-container-height);
+  width: calc(100vw - 33.5em);
+  margin-left: 0.4em;
+  margin-right: 0.1em;
+}
+
+.send {
+  color: var(--main-font-color);
+  height: 1.8em;
+}

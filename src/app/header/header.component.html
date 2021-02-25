@@ -1,0 +1,48 @@
+<div class="toolbar">
+  <i class="icon toolbar-icon fa fa-map-marker-alt right-margin extra-margin-left extra-margin-right"></i>
+  <a class="link link-undecorated" routerLink="/"><span class="font-large">Pin Board - pin your offer !</span></a>
+  <div class="spacer"></div>
+  <a class="link tooltip-enabled" routerLink="/add"> <i
+    class="icon toolbar-icon fa fa-plus-square extra-margin-left extra-margin-right"
+  ></i></a>
+  <!--  <a class="link tooltip-enabled" routerLink="/inbox"> <i
+      class="icon toolbar-icon fa fa-envelope extra-margin-left extra-margin-right"
+    ></i></a>-->
+  <a class="link tooltip-enabled">
+    <div (click)="showNotifications()">
+    <span>
+    <a *ngIf="notifications && notifications.length === 0" class="link-undecorated" routerLink="/inbox"> <i
+      class="icon toolbar-icon fa fa-envelope extra-margin-left extra-margin-right">
+    </i></a>
+    <a *ngIf="notifications && notifications.length > 0" class="link-undecorated"> <i
+      class="icon toolbar-icon fa fa-envelope extra-margin-left extra-margin-right">
+    </i></a>
+    </span>
+      <span [hidden]="notifications.length < 1" class="notification-counter"> {{notifications.length}}</span>
+      <div *ngIf="!notificationListExpanded">
+        <div class="vertical menu">
+          <div class="vertical-item" *ngFor="let notification of notifications">
+            <div class="horizontal">
+              <div class="menu-item extra-margin-left extra-margin-right10">{{notification?.body}}</div>
+              <div class="spacer"></div>
+              <a class="link-undecorated" >
+                <div class="menu-item accept"
+                     (click)="dispatchNotification(notification,true)"><i
+                  id="view" class="fa fa-eye"></i></div>
+              </a>
+              <div class="extra-margin-left"></div>
+              <div class="menu-item decline extra-margin-right10"
+                   (click)="dispatchNotification(notification,false)"><i
+                id="decline" class="fa fa-times"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a class="link tooltip-enabled" routerLink="/account"> <i
+    class="icon toolbar-icon fa fa-user extra-margin-left extra-margin-right"> </i>
+  </a>
+  <div class="extra-margin-right"></div>
+</div>

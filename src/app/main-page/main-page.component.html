@@ -1,0 +1,9 @@
+<div class="form background vertical">
+  <app-search-bar (searchBarExpanded)="searchBarExpanded($event)" [pagingInfoInput]="pagingInfoChanged.asObservable()"
+                  (searchData)="searchData($event)"></app-search-bar>
+  <div class="horizontal" [ngClass]="!searchDataExpanded ? 'fullscreen': 'fullscreen-indented'">
+    <app-item-list [offers]="offers" (searchCriteriaChanged)="searchCriteriaChanged($event)"
+                   class="horizontal stretch"></app-item-list>
+    <app-map [mapMode]="'standard'" [markers]="markersOffers" class="horizontal stretch"></app-map>
+  </div>
+</div>

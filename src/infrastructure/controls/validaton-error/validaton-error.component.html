@@ -1,0 +1,4 @@
+<div class="validation-error-tooltip" *ngIf="!!control && !!control.touched && !!control.errors">
+  <div *ngFor="let error of control?.errors | keyvalue">{{getError(error)}}
+  </div>
+</div>
